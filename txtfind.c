@@ -18,49 +18,86 @@ int main(){
         switch (s[0])
         {
         case 'a':
-            
+            print_lines(w);
             break;
         case 'b':
-            break;
-        default:
+        print_similar_words(w);
             break;
         }
-
-        
     }
+    return 0;
 }
 */
-
+// this function prints lines that contains similar words to the given word
 void print_lines(char *str){
     char l[256];
-    size_t s_l = get_line(l);
-    int i = 0;
-    int b = FALSE;
-    while (i<s_l)
+    char w[WORD];
+    l[0] = 'i';
+    // need checking 
+    while (l[0] != EOF)
     {
-        
-    }
-    
+        size_t s_l = Line(l);
+        int i = 0;
+        int j;
+        int b = FALSE;
+        while (i<s_l)
+        {
+            j = getWord_fromLine(l,w,i,s_l);
+            char w2[j];
+            copy(w,w2,j);
+            i += j;
+            if (similar(w2,str,1))
+            {
+                b = TRUE;
+            }
+        }
+        if (b)
+        {
+            printf("%s\n",l);
+        }
+}      
+}
 
+// this function prints similar words to the given word
+void print_similar_words(char * str){
+    char l[256];
+    size_t s_l = Line(l);
+    int i = 0;
+    int j;
+    int b = FALSE;
+    char w[WORD];
+     // need checking 
+        while (i<s_l)
+    {
+        j = getWord_fromLine(l,w,i,s_l);
+        char w2[j];
+        copy(w,w2,j);
+        i += j;
+        if (similar(w2,str,1))
+        {
+           printf("%s",w2);
+        }
+    } 
 }
 
 //////////////
 //functions//
 /////////////
 
-
-int get_line(char s[]){
+// this function read a line from the user
+int Line(char s[]){
     int i = 0;
     char c;
-    while (c = getchar() != '\n')
+    while ( ((c = getchar()) != '\n' )&&(c != 13))
     {
         s[i] = c;
         i++;
     }
+    s[i] = '\0';
     return i;
 }
 
-
+// this function read a word from the user
 int get_word(char w[]){
     char c;
     int i = 0;
@@ -71,35 +108,14 @@ int get_word(char w[]){
         i++;
         c = getchar();
     }
+    i++;
+    w[i] = '\0';
     return i;
 }
 
-
-int substring( char * str1, char * str2){
-    int i = 0;
-    while (*str1 != '\0')
-    {
-        
-    }
-    
-}
-
-// this function returns if str1 contains str2
-int contains(char *str1 , char * str2){
-    while ( *str1 != '\0')
-    { 
-       if (*str1 == *str2)
-       {
-           str2++;
-       }
-        str1++;
-    }
-    return  *str2 == '\0';
-}
 // this function return if str1 is similar to str2 with n differences 
 int similar(char * str1 , char *str2 , int n){
     int i1 = 0 ,i2 = 0;
-
     while ( *str1 != '\0')
     {
        if (*str1 == *str2)
@@ -116,7 +132,7 @@ int similar(char * str1 , char *str2 , int n){
 // this function get a word from a line from the given start 
 int getWord_fromLine(char l[],char w[] , int start,int size){
     int i = start , j = 0;
-    while ((l[i] != '\n') && (l[i] != '\t' )&& (l[i] != ' ')&&(i <size))
+    while ((l[i] != '\n') && (l[i] != '\t' )&& (l[i] != ' ')&&(l[i] != 13)&&(i <size))
     {
         w[j] = l[i];
         i++;
@@ -131,4 +147,28 @@ void copy(char s1[] , char s2[], int end){
         s2[j] = s1[j];
     }
     s2[end-1] = '\0';
+}
+
+// not sure if needed 
+
+int substring( char * str1, char * str2){
+    //int i = 0;
+    while (*str1 != '\0')
+    {
+        
+    }
+   return 0; 
+}
+
+// this function returns if str1 contains str2
+int contains(char *str1 , char * str2){
+    while ( *str1 != '\0')
+    { 
+       if (*str1 == *str2)
+       {
+           str2++;
+       }
+        str1++;
+    }
+    return  *str2 == '\0';
 }
