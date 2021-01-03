@@ -130,7 +130,7 @@ int similar(char * str1 , char *str2 , int n){
         ++str1;
         ++i1;
     }
-    return  (((i1-i2) == n) && (*str2 == '\0'));
+    return  (((i1-i2) <= n) && (*str2 == '\0'));
 }
 
 // this function get a word from a line from the given start 
