@@ -36,7 +36,6 @@ void print_lines(char *str){
     // need checking 
     while (l[0] != EOF)
     {
-        //printf("line test : %i\n",l[0]);
         size_t s_l = Line(l);
         int i = 0;
         int j;
@@ -46,7 +45,7 @@ void print_lines(char *str){
             j = getWord_fromLine(l,w,i,s_l);
             i += j;
             ++i;
-            if (similar(w,str,1))
+            if (substring(w,str))
             {
                 b = TRUE;
             }
@@ -98,6 +97,7 @@ int Line(char s[]){
     s[i] = '\0';
     if(c == EOF){
         s[0] = EOF;
+        return 0;
     }
     return i;
 }
@@ -157,10 +157,31 @@ void copy(char s1[] , char s2[], int end){
 // not sure if needed 
 
 int substring( char * str1, char * str2){
-    //int i = 0;
+    int i = 0;
     while (*str1 != '\0')
     {
-        
+        if (*str2 == '\0')
+        {
+            return 1;
+        }
+        if (*str1 == *str2)
+       {
+           ++str2;
+           ++i;
+       }
+       else
+       {
+           while(i >0)
+           {
+               --str2;
+               --i;
+           }
+       }
+        ++str1;   
+    }
+     if (*str2 == '\0')
+    {
+            return 1;
     }
    return 0; 
 }
