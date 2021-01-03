@@ -1,12 +1,13 @@
-#include "headers.h"
-
+//#include "headers.h"
+#include <stdio.h>
 int main(){
-    char w[] = "cat";
-    print_lines(w);
     return 0;
 }
 
+/*
 void debug1(){
+    char w[] = "cat";
+    print_lines(w);
     char s[] = "abbbcd nuys\ttur\n";
     char s2[20];
     int i;
@@ -53,3 +54,4 @@ void debug1(){
     printf("*s2 = %s \n",s2);
     printf("s2 = %s \n",s9);
 }
+*/
