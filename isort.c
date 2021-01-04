@@ -6,7 +6,7 @@ void shift_element(int *arr, int i)
 {
     while (i >= 0)
     {
-        *(arr + i) = *(arr + i - 1) + 0;
+        *(arr + i+1) = *(arr + i) + 0;
         i--;
     }
 }
@@ -21,7 +21,7 @@ void insertion_sort(int *arr, int len)
     }
     int index = 0;
     int current = *arr;
-    while (index < len - 1)
+    while (index < len )
     {
         index++;
         current = *(arr + index);
@@ -29,30 +29,21 @@ void insertion_sort(int *arr, int len)
         if (*(arr + index) < *(arr + index - 1))
         {
             int bound = index - 1;
-            while (*(arr + bound) > current && bound != 0)
+            while (*(arr + bound-1) > current && bound != 0)
             {
                 bound--;
             }
             if (bound == 0)
             {
-                shift_element((arr), index);
+                shift_element((arr), index-1);
                 *(arr) = current;
             }
             else
             {
-                shift_element((arr + bound), index - bound);
-                *(arr + bound + 1) = current;
+                shift_element((arr + bound), index - bound-1);
+                *(arr + bound) = current;
             }
         }
-        for (int i = 0; i < 50; i++)
-        {
-            printf("%d", *(arr + i));
-            if (i < 49)
-            {
-                printf(",");
-            }
-        }
-        printf("\n");
     }
 }
 
