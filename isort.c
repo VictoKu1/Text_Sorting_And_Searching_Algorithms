@@ -6,7 +6,7 @@ void shift_element(int *arr, int i)
 {
     while (i >= 0)
     {
-        *(arr + i+1) = *(arr + i) + 0;
+        *(arr + i + 1) = *(arr + i) + 0;
         i--;
     }
 }
@@ -21,7 +21,7 @@ void insertion_sort(int *arr, int len)
     }
     int index = 0;
     int current = *arr;
-    while (index < len )
+    while (index < len)
     {
         index++;
         current = *(arr + index);
@@ -29,18 +29,18 @@ void insertion_sort(int *arr, int len)
         if (*(arr + index) < *(arr + index - 1))
         {
             int bound = index - 1;
-            while (*(arr + bound-1) > current && bound != 0)
+            while (*(arr + bound - 1) > current && bound != 0)
             {
                 bound--;
             }
             if (bound == 0)
             {
-                shift_element((arr), index-1);
+                shift_element((arr), index - 1);
                 *(arr) = current;
             }
             else
             {
-                shift_element((arr + bound), index - bound-1);
+                shift_element((arr + bound), index - bound - 1);
                 *(arr + bound) = current;
             }
         }
@@ -62,14 +62,11 @@ int loc(int *arr, int bound, int searched)
 
 int main()
 {
-    int arr[SIZOFARRAY];
+    int *arr = malloc(SIZOFARRAY * sizeof(int));
     int *p = arr;
     for (int i = 0; i < 50; i++)
     {
-        while (!scanf("%d", &(*(p + i))))
-        {
-            printf("Error: this is not a real number , please enter a real number next time ! \n");
-        }
+        scanf("%d", &(*(p + i)));
     }
     insertion_sort(p, 50);
     for (int i = 0; i < 50; i++)
@@ -81,4 +78,5 @@ int main()
         }
     }
     printf("\n");
+    free(arr);
 }

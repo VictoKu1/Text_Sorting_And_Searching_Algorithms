@@ -1,6 +1,6 @@
 #ifndef __HEADERS__H
 #define __HEADERS__H
-
+#include <stdlib.h>
 #include <stdio.h>
 #define SIZOFARRAY 50
 #define FALSE 0

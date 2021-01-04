@@ -21,7 +21,7 @@ int main()
     return 0;
 }
 
-// this function prints lines that contains similar words to the given word
+// This function prints lines that contains similar words to the given word
 void print_lines(char *str)
 {
     char l[LINE];
@@ -51,7 +51,7 @@ void print_lines(char *str)
     }
 }
 
-// this function prints similar words to the given word
+// This function prints similar words to the given word
 void print_similar_words(char *str)
 {
     char l[LINE];
@@ -80,7 +80,7 @@ void print_similar_words(char *str)
 //functions//
 /////////////
 
-// this function read a line from the user
+// This function read a line from the user
 int Line(char s[])
 {
     int i = 0;
@@ -99,7 +99,7 @@ int Line(char s[])
     return i;
 }
 
-// this function read a word from the user
+// This function read a word from the user
 int get_word(char w[])
 {
     char c;
@@ -115,7 +115,7 @@ int get_word(char w[])
     return i;
 }
 
-// this function return if str1 is similar to str2 with n differences
+// This function return if str1 is similar to str2 with n differences
 int similar(char *str1, char *str2, int n)
 {
     int i1 = 0, i2 = 0;
@@ -132,7 +132,7 @@ int similar(char *str1, char *str2, int n)
     return (((i1 - i2) <= n) && (*str2 == '\0'));
 }
 
-// this function get a word from a line from the given start
+// This function get a word from a line from the given start
 int getWord_fromLine(char l[], char w[], int start, int size)
 {
     int i = start, j = 0;
@@ -145,7 +145,7 @@ int getWord_fromLine(char l[], char w[], int start, int size)
     w[j] = '\0';
     return j;
 }
-// this function copy a string s1 to s2 from 0 to end - 1
+// This function copy a string s1 to s2 from 0 to end - 1
 void copy(char s1[], char s2[], int end)
 {
     for (size_t j = 0; j < end - 1; j++)
@@ -188,7 +188,7 @@ int substring(char *str1, char *str2)
     return 0;
 }
 
-// this function returns if str1 contains str2
+// This function returns if str1 contains str2
 int contains(char *str1, char *str2)
 {
     while (*str1 != '\0')
