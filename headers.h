@@ -1,7 +1,12 @@
 #ifndef __HEADERS__H
 #define __HEADERS__H
+
 #include <stdio.h>
 #define SIZOFARRAY 50
+#define FALSE 0
+#define TRUE 1
+#define LINE 257
+#define WORD 31
 void print_lines(char *str);
 void print_similar_words(char *str);
 int Line(char s[]);

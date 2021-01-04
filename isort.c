@@ -36,8 +36,7 @@ void insertion_sort(int *arr, int len)
             shift_element((arr + bound), index - bound);
             *(arr + bound) = current;
         }
-    
-    }
+        }
 }
 
 //* Helper fucntion to find the right position to the searched parameter in the bounded area of the array ( from arr[0] to arr[bound] ) .

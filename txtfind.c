@@ -1,8 +1,4 @@
 #include "headers.h"
-#define FALSE 0
-#define TRUE 1
-#define LINE 257
-#define WORD 31
 
 int main()
 {
