@@ -9,8 +9,6 @@ int main()
     get_word(w);
     get_word(s);
     getchar();
-    printf("word = %s \n", w);
-    printf("si = %s \n", s);
     switch (s[0])
     {
     case 'a':

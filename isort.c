@@ -66,7 +66,6 @@ int main()
     int *p = arr;
     for (int i = 0; i < 50; i++)
     {
-        printf("Enter number # %d :\n ", i);
         while (!scanf("%d", &(*(p + i))))
         {
             printf("Error: this is not a real number , please enter a real number next time ! \n");
