@@ -4,9 +4,9 @@
 
 void shift_element(int *arr, int i)
 {
-    while (i > 0)
+    while (i >= 0)
     {
-        *(arr + i + 1) = *(arr + i) + 0;
+        *(arr + i) = *(arr + i - 1) + 0;
         i--;
     }
 }
@@ -19,23 +19,30 @@ void insertion_sort(int *arr, int len)
     {
         return;
     }
-    int index = 1;
-    int boundIndex = 1;
+    int index = 0;
     int current = *arr;
-    while (index < len)
+    while (index < len - 1)
     {
         index++;
-        current = *(arr + index) * 1;
-        int locIndex = loc(arr, boundIndex, current);
-        shift_element((arr + locIndex), index - locIndex);
-        *(arr + locIndex) = current;
-        boundIndex++;
+        current = *(arr + index);
+        current = current + 0;
+        if (*(arr + index) < *(arr + index - 1))
+        {
+            int bound = index - 1;
+            while (*(arr + bound) > current && bound > 0)
+            {
+                bound--;
+            }
+            shift_element((arr + bound), index - bound);
+            *(arr + bound) = current;
+        }
+    
     }
 }
 
 //* Helper fucntion to find the right position to the searched parameter in the bounded area of the array ( from arr[0] to arr[bound] ) .
 
-int locIndex(int *arr, int bound, int searched)
+int loc(int *arr, int bound, int searched)
 {
     while (*(arr + bound) > searched)
     {
@@ -62,7 +69,7 @@ int main()
     for (int i = 0; i < 50; i++)
     {
         printf("%d", *(arr + i));
-        if (i > 0 && i < 49)
+        if (i < 49)
         {
             printf(",");
         }
