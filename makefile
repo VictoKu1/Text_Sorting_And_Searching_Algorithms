@@ -12,7 +12,6 @@ txtfind: txtfind.o
 %.o:%.c
 	$(CC) -c $(CFLAGS) $< -o $@
 
+.PHONY : clean all
 clean: 
 	rm *.o isort txtfind
-
-.PHONY : clean all 

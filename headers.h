@@ -1,4 +1,7 @@
+#ifndef __HEADERS__H
+#define __HEADERS__H
 #include <stdio.h>
+#define SIZOFARRAY 50
 void print_lines(char *str);
 void print_similar_words(char *str);
 int Line(char s[]);
@@ -8,5 +11,7 @@ int similar(char *str1, char *str2, int n);
 void print_lines(char *str);
 int getWord_fromLine(char l[], char w[], int s, int n);
 void copy(char s1[], char s2[], int i);
-void shift_element(int* arr, int i);
-void insertion_sort(int* arr ,int len);
+void shift_element(int *arr, int i);
+void insertion_sort(int *arr, int len);
+int locIndex(int *arr, int bound, int searched);
+#endif
