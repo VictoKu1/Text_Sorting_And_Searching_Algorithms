@@ -29,14 +29,31 @@ void insertion_sort(int *arr, int len)
         if (*(arr + index) < *(arr + index - 1))
         {
             int bound = index - 1;
-            while (*(arr + bound) > current && bound > 0)
+            while (*(arr + bound) > current && bound != 0)
             {
                 bound--;
             }
-            shift_element((arr + bound), index - bound);
-            *(arr + bound) = current;
+            if (bound == 0)
+            {
+                shift_element((arr), index);
+                *(arr) = current;
+            }
+            else
+            {
+                shift_element((arr + bound), index - bound);
+                *(arr + bound + 1) = current;
+            }
         }
+        for (int i = 0; i < 50; i++)
+        {
+            printf("%d", *(arr + i));
+            if (i < 49)
+            {
+                printf(",");
+            }
         }
+        printf("\n");
+    }
 }
 
 //* Helper fucntion to find the right position to the searched parameter in the bounded area of the array ( from arr[0] to arr[bound] ) .
