@@ -54,3 +54,41 @@ dkms.conf
 # check_submition
 *.py
 
+# Build artifacts
+obj/
+bin/
+*.o
+*.a
+*.so
+*.exe
+*.out
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# Test output files
+output_*
+test_output_*
+
+# Backup files
+*.bak
+*.backup
+

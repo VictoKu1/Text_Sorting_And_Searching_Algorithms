@@ -1,82 +1,108 @@
 #include "headers.h"
 
-//* Shifts all the cells in the array after cell arr[0] one cell to right , i.e. moves the content of cell arr[x] to arr[x+1] for each *(arr)<=x<=*(arr+i).
-
-void shift_element(int *arr, int i)
+/**
+ * Shifts array elements to the right starting from the given position.
+ * This function moves all elements from arr[0] to arr[position] one position to the right.
+ * 
+ * @param array Pointer to the integer array
+ * @param position The position from which to start shifting
+ */
+void shift_array_elements(int *array, int position)
 {
-    while (i >= 0)
-    {
-        *(arr + i + 1) = *(arr + i) + 0;
-        i--;
-    }
-}
-
-//* Insertion sort .
-
-void insertion_sort(int *arr, int len)
-{
-    if (len == 0)
-    {
+    if (array == NULL || position < 0) {
         return;
     }
-    int index = 0;
-    int current = *arr;
-    while (index < len)
-    {
-        index++;
-        current = *(arr + index);
-        current = current + 0;
-        if (*(arr + index) < *(arr + index - 1))
-        {
-            int bound = index - 1;
-            while (*(arr + bound - 1) > current && bound != 0)
-            {
-                bound--;
-            }
-            if (bound == 0)
-            {
-                shift_element((arr), index - 1);
-                *(arr) = current;
-            }
-            else
-            {
-                shift_element((arr + bound), index - bound - 1);
-                *(arr + bound) = current;
-            }
-        }
+    
+    for (int i = position; i >= 0; i--) {
+        array[i + 1] = array[i];
     }
 }
 
-//* Helper fucntion to find the right position to the searched parameter in the bounded area of the array ( from arr[0] to arr[bound] ) .
-
-int loc(int *arr, int bound, int searched)
+/**
+ * Performs insertion sort on an integer array.
+ * Time complexity: O(n²) in worst case, O(n) in best case
+ * Space complexity: O(1)
+ * 
+ * @param array Pointer to the integer array to sort
+ * @param length Number of elements in the array
+ */
+void insertion_sort(int *array, int length)
 {
-    while (*(arr + bound) > searched)
-    {
+    if (array == NULL || length <= 0) {
+        return;
+    }
+    
+    for (int i = 1; i < length; i++) {
+        int current_element = array[i];
+        int j = i - 1;
+        
+        // Move elements greater than current_element one position ahead
+        while (j >= 0 && array[j] > current_element) {
+            array[j + 1] = array[j];
+            j--;
+        }
+        array[j + 1] = current_element;
+    }
+}
+
+/**
+ * Finds the correct insertion position for a value in a sorted array.
+ * 
+ * @param array Pointer to the sorted array
+ * @param bound Upper bound for the search
+ * @param value The value to find position for
+ * @return The index where the value should be inserted
+ */
+int find_insertion_position(int *array, int bound, int value)
+{
+    if (array == NULL || bound < 0) {
+        return 0;
+    }
+    
+    while (bound >= 0 && array[bound] > value) {
         bound--;
     }
-    return bound;
+    return bound + 1;
 }
 
-//* Main fucntion which gets 50 integers, puts them into array and sorts it using insertion_sort().
-
+/**
+ * Main function for the insertion sort program.
+ * Reads 50 integers from stdin, sorts them using insertion sort,
+ * and prints the sorted array to stdout.
+ * 
+ * @return 0 on successful execution
+ */
 int main()
 {
-    int *arr = malloc(SIZOFARRAY * sizeof(int));
-    int *p = arr;
-    for (int i = 0; i < 50; i++)
-    {
-        scanf("%d", &(*(p + i)));
+    int *array = malloc(ARRAY_SIZE * sizeof(int));
+    if (array == NULL) {
+        fprintf(stderr, "Error: Memory allocation failed\n");
+        return 1;
     }
-    insertion_sort(p, 50);
-    for (int i = 0; i < 50; i++)
-    {
-        printf("%d", *(arr + i));
-        if (i < 49)
-        {
+    
+    // Read integers from stdin
+    printf("Enter %d integers (one per line):\n", ARRAY_SIZE);
+    for (int i = 0; i < ARRAY_SIZE; i++) {
+        if (scanf("%d", &array[i]) != 1) {
+            fprintf(stderr, "Error: Invalid input at position %d\n", i);
+            free(array);
+            return 1;
+        }
+    }
+    
+    // Sort the array
+    insertion_sort(array, ARRAY_SIZE);
+    
+    // Print the sorted array
+    printf("Sorted array:\n");
+    for (int i = 0; i < ARRAY_SIZE; i++) {
+        printf("%d", array[i]);
+        if (i < ARRAY_SIZE - 1) {
             printf(",");
         }
     }
     printf("\n");
-    free(arr);
+    
+    free(array);
+    return 0;
 }
